@@ -1,0 +1,144 @@
+#screen, #sync_body, #footer{
+	width: 1935px;
+}
+#screen{
+	background: black;
+	--height: 1175px;
+	width: 1936px;
+}
+#header{
+	background: black;
+	height: 124px;
+	display: inline-block;
+	
+}
+
+#home, #temp_interior_driver, #clock, #temp_exterior, #temp_interior_passenger, #bluetooth{
+	line-height: 120px;
+	font-family: Arial;
+	font-size: 90px;
+	color: white;
+	background: black;
+}
+#temp_interior_driver, #temp_interior_passenger{
+	font-family: Arial;
+	font-size: 68px;
+	text-align: center;
+}
+#home, #bluetooth{
+	height: 120px;
+}
+
+#home{
+	background: url(images/home.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	float: left;
+	width: 325px;
+}
+#home:hover{
+	background: url(images/home_pressed.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#temp_interior_driver{
+	float: left;
+	width: 137px;
+}
+#clock{
+	float: left;
+	width: 520px;
+	text-align: right;
+}
+#temp_exterior{
+	float: left;
+	width: 635px;
+	padding-left: 40px;
+}
+#temp_interior_passenger{
+	float: left;
+	width: 137px;
+}
+#bluetooth{
+	background: url(images/bluetooth.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	float: left;
+	width: 137px;
+}
+
+
+#sync_body{
+	background: url(images/screen_backdrop.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 850px;
+}
+.app_icon{
+	background: url(images/button.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 353px;
+	width: 420px;
+	float: left;
+	margin-top: 50px;
+	margin-left: 60px;
+}
+#findapps img{
+	width:50%;
+	padding: 60px 110px 60px 110px;
+}
+#smartpark img{
+	width:80%;
+	padding: 70px 50px 70px 50px;
+}
+
+
+
+#footer{
+	background: #e1e1e1;
+	height: 200px;
+	border-top: 4px outset black;
+	border-bottom: 4px outset black;
+}
+.footer_button{
+	width: 320px;
+	height: 100%;
+	float: left;
+}
+
+#audio{
+	background: url(images/audio.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#climate{
+	background: url(images/climate.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#phone{
+	background: url(images/phone.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#nav{
+	background: url(images/nav.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#apps{
+	background: url(images/apps.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#apps:hover{
+	background: url(images/apps_pressed.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#settings{
+	background: url(images/settings.png) center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
