@@ -1,3 +1,14 @@
+
+.padding-top-bottom {
+
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.width-full {
+	width:100%;
+}
+
 #screen, #sync_body, #footer{
 	width: 1935px;
 }
