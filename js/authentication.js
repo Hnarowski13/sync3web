@@ -6,7 +6,13 @@
     function toggleSignIn() {
       if (firebase.auth().currentUser) {
         // [START signout]
+
+
         firebase.auth().signOut();
+          $("#smart_park_app").hide();
+          $("#smart_park_login").show();
+
+
         // [END signout]
       } else {
         var email = document.getElementById('email').value;
@@ -125,6 +131,9 @@
     //    document.getElementById('quickstart-verify-email').disabled = true;
         // [END_EXCLUDE]
         if (user) {
+
+          $("#smart_park_app").show();
+          $("#smart_park_login").hide();
           // User is signed in.
           var displayName = user.displayName;
           var email = user.email;
@@ -137,7 +146,9 @@
           // [START_EXCLUDE]
           document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
           document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-          document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+          document.getElementById('quickstart-account-details').textContent =  email;
+
+          //document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
           // if (!emailVerified) {
           //   document.getElementById('quickstart-verify-email').disabled = false;
 
@@ -166,8 +177,4 @@
       // document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
     }
 
-    window.onload = function() {
-      initAppAuth();
-
-
-    };
+  

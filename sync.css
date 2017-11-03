@@ -41,14 +41,14 @@
 }
 
 #home{
-	background: url(images/home.png) center;
+	background: url(images/home.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 	float: left;
 	width: 325px;
 }
 #home:hover{
-	background: url(images/home_pressed.png) center;
+	background: url(images/home_pressed.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
@@ -71,7 +71,7 @@
 	width: 137px;
 }
 #bluetooth{
-	background: url(images/bluetooth.png) center;
+	background: url(images/bluetooth.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 	float: left;
@@ -119,27 +119,27 @@
 }
 
 #audio{
-	background: url(images/audio.png) center;
+	background: url(images/audio.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 #climate{
-	background: url(images/climate.png) center;
+	background: url(images/climate.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 #phone{
-	background: url(images/phone.png) center;
+	background: url(images/phone.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 #nav{
-	background: url(images/nav.png) center;
+	background: url(images/nav.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 #apps{
-	background: url(images/apps.png) center;
+	background: url(images/apps.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
@@ -149,7 +149,7 @@
 	background-size: contain;
 }
 #settings{
-	background: url(images/settings.png) center;
+	background: url(images/settings.PNG) center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
