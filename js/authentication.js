@@ -177,4 +177,32 @@
       // document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
     }
 
+    function loadSpots() {
+
+
+
+var spotsRef = firebase.database().ref('spots/');
+  spotsRef.once('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
+      var html = "<p>";
+      for(var key in childData) {
+        var value = childData[key];
+        html = html.concat("<p>" + key + " : " + value  + "</p>");
+
+      }
+      html = html.concat("</p>")
+      
+
+    //  $( "#parking-spots" ).append( "<p>Parking Spot: </p>"+html );
+  // ...
+  });
+});  
+
+
+    }
+
+
+
   

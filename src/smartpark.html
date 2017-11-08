@@ -42,12 +42,22 @@ limitations under the License.
   <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
   <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
   <script src="/__/firebase/4.0.0/firebase-app.js"></script>
+  <script src="/__/firebase/4.0.0/firebase-database.js"></script>
   <script src="/__/firebase/4.0.0/firebase-auth.js"></script>
   <script src="/__/firebase/init.js"></script>
 
 
+
+
   <script src="/js/authentication.js"></script>
   <script src="/js/firebase-smartpark.js"></script>
+
+ 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFwwEKnsX-F5vOLW5GyEdx4X2KrCguS8Y&callback=initMap">
+    </script>
+
+
 
 </head>
 <body>
@@ -84,13 +94,7 @@ limitations under the License.
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
         <div class="col-lg-12">
-        <div class="col-lg-3">
-          <div class="quickstart-user-details-container">
-            Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
-            <div>Firebase auth <code>currentUser</code> object value:</div>
-            <pre><code id="quickstart-account-details">null</code></pre>
-          </div>
-        </div>
+
 
         <div id="smart_park_login">
 
@@ -126,14 +130,32 @@ limitations under the License.
 
         <div id="smart_park_app" style="display: none;">
 
-          <div class="col-lg-9">
+
+
+          <div class="col-lg-12">
             <h3>
-              Ford Smart Park App Stuff Yay
+              Ford Smart Park - Find Parking Spots
             </h3>
 
+ <div class="col-lg-12">
+          <div class="quickstart-user-details-container">
+            Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+            <div>Firebase auth <code>currentUser</code> object value:</div>
+            <pre><code id="quickstart-account-details">null</code></pre>
+          </div>               
+</div>
 
               <div class="container">
-                <button id="find-spots-btn" class="btn btn-lg btn-primary padding-top-bottom">Find Parking Spots</button>
+              <!--   <button id="find-spots-btn" class="btn btn-lg btn-primary padding-top-bottom">Find Parking Spots</button> -->
+
+
+                <div id="map" style="width:80%; height:475px"></div>
+
+
+                <div id="parking-spots">
+
+                </div>
+
 
                 <br>
                 <br>
@@ -158,6 +180,8 @@ limitations under the License.
  </div>
 
       </div>
+
+
 <!-- 
 
     </div>
