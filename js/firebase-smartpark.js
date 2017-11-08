@@ -57,6 +57,7 @@
             var latitude = Number(childData["latitude"]);
             var longitude = Number(childData["longitude"]);
             var size = childData["size"];
+            var handicapped = childData["handicapped"];
 
             var timestamp = (childData["timestamp"]);
 
@@ -67,19 +68,36 @@
             // var newDate = new Date(ds1[0], (+ds1[1] - 1), ds1[2], ds2[0], ds2[1], ds2[2]).getTime(); //parse it         
              var newDate = new Date(ds1[0], (+ds1[1] - 1), ds1[2], ds2[0], ds2[1]).getTime();
               var diff = millisecondsToHoursMinutesSeconds(currentDate - newDate)//;
+              var label = "P";
+              content_str = "Open Parking Spot <br>" + diff + " minutes ago";
+
+              var image = "";
+              if (handicapped == "Handicapped")
+              {
+                  content_str = content_str + "<br>Handicapped";
+                  //label = "H";
+                  image = 'https://www.airportparkingreservations.com/img/icons/handicap.png';
+              }
+              else 
+              {
+                  content_str = content_str + "<br>Size: " + size
+              }
+
        var infowindow = new google.maps.InfoWindow({
-          content: "Open Parking Spot <br>" + diff + " minutes ago" + "<br>Size: " + size
+          content: content_str
         });
 
 
             var parking_spot = {lat: latitude, lng: longitude};
 
-
+  //var image = 'https://www1.jobdiva.com/images/64px-Handicapped_Accessible_sign.svg.png';
+ 
            // placeMarker(parking_spot,"Whatever");
             var marker = new google.maps.Marker({
               position: parking_spot,
               map: map,
-              title: 'test title'
+              label: label,
+              icon: image
             });
 
           marker.addListener('click', function() {
