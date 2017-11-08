@@ -8,23 +8,25 @@
         // [START signout]
 
 
-        firebase.auth().signOut();
-          $("#smart_park_app").hide();
-          $("#smart_park_login").show();
+        // firebase.auth().signOut();
+        //   $("#smart_park_app").hide();
+        //   $("#smart_park_login").show();
 
 
         // [END signout]
       } else {
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-        if (email.length < 4) {
-          alert('Please enter an email address.');
-          return;
-        }
-        if (password.length < 4) {
-          alert('Please enter a password.');
-          return;
-        }
+        var email = "helena@gmail.com";
+        var password = "123456";
+        // var email = document.getElementById('email').value;
+        // var password = document.getElementById('password').value;
+        // if (email.length < 4) {
+        //   alert('Please enter an email address.');
+        //   return;
+        // }
+        // if (password.length < 4) {
+        //   alert('Please enter a password.');
+        //   return;
+        // }
         // Sign in with email and pass.
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
