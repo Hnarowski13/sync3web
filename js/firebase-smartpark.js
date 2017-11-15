@@ -33,6 +33,9 @@
 
 
 
+      //}
+
+
       //var eastLansing2 = new google.maps.LatLng(lattt, longg)
       //var eastlansing = {lat: 42.7249592, lng: -84.4812392};
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -40,13 +43,40 @@
         center: eastlansing
       });
 
-    function placeMarker(location, title) {
+
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            // infoWindow.Position(pos);
+            // infoWindow.setContent('Current Location found.');
+            // infoWindow.open(map);
+          //  map.setCenter(pos);
+
         var marker = new google.maps.Marker({
-            position: location, 
+            position: pos, 
             map: map,
-            title: "Open Parking Spot"
-        });
-    };       
+            title: "Current Location",
+            label: "C"
+        });            
+          }, function() {
+            //handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          
+          // Browser doesn't support Geolocation
+          //handleLocationError(false, infoWindow, map.getCenter());
+        }
+    // function placeMarker(location, title) {
+    //     var marker = new google.maps.Marker({
+    //         position: location, 
+    //         map: map,
+    //         title: "Open Parking Spot"
+    //     });
+    // };       
 
       var spotsRef = firebase.database().ref('spots/');
         spotsRef.once('value', function(snapshot) {
