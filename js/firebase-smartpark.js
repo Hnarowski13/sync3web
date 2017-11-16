@@ -50,6 +50,7 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+            this.current_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             //map.setCenter(pos);
 
 
@@ -67,6 +68,10 @@
         });          
         marker.addListener('click', function() {
             infowindow.open(map, marker);
+
+            var html_str = '<p class="text-white">' + content_str + '</p>';
+            $("#marker-information").replaceWith(html_str);
+
           });           
           }, function() {
             //handleLocationError(true, infoWindow, map.getCenter());
@@ -112,12 +117,13 @@
              var newDate = new Date(ds1[0], (+ds1[1] - 1), ds1[2], ds2[0], ds2[1]).getTime();
               var diff = millisecondsToHoursMinutesSeconds(currentDate - newDate)//;
               var label = "P";
-              content_str = "Open Parking Spot <br>" + diff + " minutes ago";
+              content_str = "<br>" + diff + " minutes ago<br>";
+              content_str = content_str + "Reported By: unknown";
 
               var image = "";
               if (handicapped == "Handicapped")
               {
-                  content_str = content_str + "<br>Handicapped";
+                  content_str = "Handicapped" + content_str;
                   //label = "H";
                   image = 'https://www.airportparkingreservations.com/img/icons/handicap.png';
               }
@@ -126,12 +132,23 @@
                   content_str = content_str + "<br>Size: " + size
               }
 
+              var parking_spot = {lat: latitude, lng: longitude};
+
+              var p1 = new google.maps.LatLng(latitude, longitude);
+              var p2 = this.current_pos;
+
+              if (calcDistance(p1,p2) < 15)
+              {
+                content_str = content_str + "<br><a href='#'>Remove Spot</a>";
+              }
+              
+
            var infowindow = new google.maps.InfoWindow({
               content: content_str
             });
 
 
-            var parking_spot = {lat: latitude, lng: longitude};
+            
 
   //var image = 'https://www1.jobdiva.com/images/64px-Handicapped_Accessible_sign.svg.png';
  
@@ -145,6 +162,9 @@
 
           marker.addListener('click', function() {
             infowindow.open(map, marker);
+
+            var html_str = '<h5 class="text-white">Parking Spot Info</h5><p class="text-white">' + content_str + '</p>';
+            $("#marker-information").replaceWith(html_str);
           });            
 
 
@@ -218,7 +238,9 @@
 
 
     // }
-
+function calcDistance(p1, p2) {
+  return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+}
 
     
 

@@ -55,7 +55,7 @@ limitations under the License.
 
  
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFwwEKnsX-F5vOLW5GyEdx4X2KrCguS8Y&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFwwEKnsX-F5vOLW5GyEdx4X2KrCguS8Y&callback=initMap&libraries=geometry">
     </script>
 
 
@@ -159,7 +159,7 @@ limitations under the License.
           </div>   -->             
 <!-- </div> -->
 
-               <div class="col-lg-7">
+               <div class="col-lg-8">
               <!--   <button id="find-spots-btn" class="btn btn-lg btn-primary padding-top-bottom">Find Parking Spots</button> -->
 
 
@@ -174,7 +174,18 @@ limitations under the License.
               <div class="quickstart-user-details-container">
 <!--                 Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
                 <div>Firebase auth <code>currentUser</code> object value:</div> -->
-                <pre><code id="quickstart-account-details">null</code></pre>
+
+                      <h2 class="text-white">
+          <span id="quickstart-account-details">Loading...</span>
+      </h2>
+      <hr>
+
+      <div id="marker-information">
+
+      </div>
+                
+
+
               </div>  
             
 
