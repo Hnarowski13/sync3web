@@ -39,7 +39,7 @@
       //var eastLansing2 = new google.maps.LatLng(lattt, longg)
       //var eastlansing = {lat: 42.7249592, lng: -84.4812392};
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
+        zoom: 17,
         center: eastlansing
       });
 
@@ -50,26 +50,39 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+            //map.setCenter(pos);
 
-            // infoWindow.Position(pos);
-            // infoWindow.setContent('Current Location found.');
-            // infoWindow.open(map);
-          //  map.setCenter(pos);
+
+          var current_loc_image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+          var content_str = "Current Location";
+           var infowindow = new google.maps.InfoWindow({
+              content: content_str
+            });
 
         var marker = new google.maps.Marker({
             position: pos, 
             map: map,
-            title: "Current Location",
-            label: "C"
-        });            
+            icon: current_loc_image,
+            title: "Current Location" 
+        });          
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });           
           }, function() {
             //handleLocationError(true, infoWindow, map.getCenter());
           });
         } else {
-          
+          console.log("Geolocation not available.");
           // Browser doesn't support Geolocation
           //handleLocationError(false, infoWindow, map.getCenter());
         }
+
+    var zoomDiv = document.createElement('div');
+    var renderZoomControls = new ZoomControl(zoomDiv, map);
+    zoomDiv.index = 1;
+    $("#map-custom-controls").append(zoomDiv);
+    //map.controls[google.maps.ControlPosition.TOP_LEFT].push(zoomDiv);
+
     // function placeMarker(location, title) {
     //     var marker = new google.maps.Marker({
     //         position: location, 
@@ -113,9 +126,9 @@
                   content_str = content_str + "<br>Size: " + size
               }
 
-       var infowindow = new google.maps.InfoWindow({
-          content: content_str
-        });
+           var infowindow = new google.maps.InfoWindow({
+              content: content_str
+            });
 
 
             var parking_spot = {lat: latitude, lng: longitude};
@@ -148,8 +161,8 @@
         minutes = (minutes < 10) ? "0" + minutes : minutes;
         seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-        minutes = minutes + 60*hours;
-        return minutes;
+      //  minutes = minutes + 60*hours;
+        return hours + " hours " + minutes;
        // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
     }
   //   google.maps.event.addListener(map, 'click', function(event) {

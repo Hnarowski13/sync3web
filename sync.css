@@ -1,4 +1,19 @@
 
+.user-info
+{
+	/*background-color: white;*/
+	background-color: #0215555c;
+	border: 1px black;
+}
+
+.text-white {
+	color: white;
+}
+
+.padding-left {
+	padding-left: 40px;
+}
+
 .padding-top-bottom {
 
 	padding-top: 30px;
