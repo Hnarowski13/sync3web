@@ -4,14 +4,14 @@ function ZoomControl(div, map) {
   var controlDiv = div;
 
   // Set CSS for the controls.
-  controlDiv.style.margin = '28px 5px 5px 22px';
+  controlDiv.style.margin = '5px 5px 5px 22px';
   controlDiv.style.cursor = 'pointer';
   controlDiv.style.border = "1px solid #9e9e9e"
   controlDiv.style.opacity = "0.8";
   controlDiv.style.backgroundColor = "#FFFFFF";
   controlDiv.style.fontFamily = 'Open Sans';
   controlDiv.style.borderRadius = '3px';
-  controlDiv.style.height = '200px';
+  controlDiv.style.height = '150px';
   controlDiv.style.width = '400px';
 
 
@@ -30,7 +30,7 @@ function ZoomControl(div, map) {
   zoominText.style.fontSize = '80px';
   zoominText.style.textAlign = 'center';
   zoominText.style.color = "#9e9e9e"
-  zoominText.style.marginTop = '70px';
+  zoominText.style.marginTop = '60px';
   zoomin.appendChild(zoominText);
 
   var zoomout = document.createElement('div');

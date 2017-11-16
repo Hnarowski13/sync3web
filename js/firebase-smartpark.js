@@ -26,12 +26,8 @@
 
     function initMap() {
 
-      var lattt = 42.7249781;
-      var longg = -84.4812492;
-      var eastlansing = new google.maps.LatLng( 42.7268686,-84.5445129);
-
-
-
+ 
+      var eastlansing = new google.maps.LatLng( 42.7249728,-84.4812693);
 
       //}
 
@@ -52,6 +48,7 @@
             };
             this.current_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             //map.setCenter(pos);
+            // commented out for testing purposes. dis chick in chicago
 
 
           var current_loc_image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
@@ -69,8 +66,8 @@
         marker.addListener('click', function() {
             infowindow.open(map, marker);
 
-            var html_str = '<p class="text-white">' + content_str + '</p>';
-            $("#marker-information").replaceWith(html_str);
+           // var html_str = '<p class="text-white">' + content_str + '</p>';
+            //$("#marker-information").replaceWith(html_str);
 
           });           
           }, function() {
@@ -117,30 +114,43 @@
              var newDate = new Date(ds1[0], (+ds1[1] - 1), ds1[2], ds2[0], ds2[1]).getTime();
               var diff = millisecondsToHoursMinutesSeconds(currentDate - newDate)//;
               var label = "P";
-              content_str = "<br>" + diff + " minutes ago<br>";
-              content_str = content_str + "Reported By: unknown";
+              // content_str = '<span class="label lb-lg label-success">Open Parking Spot</span><br>';
+
+              content_str = '<span class="label lb-lg label-success">'+diff + ' minutes ago </span><br>';
+              
 
               var image = "";
               if (handicapped == "Handicapped")
               {
-                  content_str = "Handicapped" + content_str;
+                  content_str = content_str + '<p><span class="label lb-lg label-warning">Size: Handicapped</span></p><br>';
                   //label = "H";
                   image = 'https://www.airportparkingreservations.com/img/icons/handicap.png';
               }
-              else 
+              else
               {
-                  content_str = content_str + "<br>Size: " + size
+                  content_str = content_str + '<p><span class="label lb-lg label-info">Size: '+size+'</span></p><br>';
               }
+              content_str = content_str + '<p><span class="label lb-lg label-default">Reported by: (unknown)</span></p><br>';
 
               var parking_spot = {lat: latitude, lng: longitude};
 
               var p1 = new google.maps.LatLng(latitude, longitude);
+              
+
+              
+              // if (this.current_pos != undefined)
+              // {
+
+              // FOR TESTING PURPOSES REMOVE LATER
+              this.current_pos = new google.maps.LatLng( 42.7249728,-84.4812693);
+
+             //   this.current_pos =  new google.maps.LatLng(latitude, longitude);
+              // }
+
               var p2 = this.current_pos;
 
-              if (calcDistance(p1,p2) < 15)
-              {
-                content_str = content_str + "<br><a href='#'>Remove Spot</a>";
-              }
+
+
               
 
            var infowindow = new google.maps.InfoWindow({
@@ -159,13 +169,28 @@
               label: label,
               icon: image
             });
+            var html_str = '<h5 class="text-white">Parking Spot Info</h5><p class="text-white spot-info">' + content_str + '</p>';
+              // var html_str = '<h5 class="text-white">Parking Spot Info<br>'+ content_str + '</h5>';
+            marker.metaData = html_str;
+
+
+          if (p2 != undefined)
+          {
+            if (calcDistance(p1,p2) < 10)
+            {
+              
+              marker.removeData = "<br><button onclick='removeParkingSpotWithPoints("+'"'+childKey+'"'+")' class='btn park-btn btn-lg btn-primary'>I Parked Here</button>";
+              marker.removeData += "|<button onclick='removeParkingSpot("+'"'+childKey+'"'+")'  class='btn park-btn margin-left btn-lg btn-primary'>Spot Full</button>";
+            }                
+          }            
 
           marker.addListener('click', function() {
-            infowindow.open(map, marker);
+//            infowindow.open(map, marker);
 
-            var html_str = '<h5 class="text-white">Parking Spot Info</h5><p class="text-white">' + content_str + '</p>';
-            $("#marker-information").replaceWith(html_str);
-          });            
+            $("#marker-information").html('');
+            $("#marker-information").append(marker.removeData);
+            $("#marker-information").append(marker.metaData);
+          });
 
 
           });
@@ -223,7 +248,22 @@
    }
 
 //})
+function removeParkingSpot(id)
+{
+  var spotsRef = firebase.database().ref('spots/'); //root reference to your data
+//  spotsRef.child(id).remove();
 
+}
+
+
+function removeParkingSpotWithPoints(id)
+{
+  var spotsRef = firebase.database().ref('spots/'); //root reference to your data
+
+
+//  spotsRef.child(id).remove();
+
+}
      
 
 
