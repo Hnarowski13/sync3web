@@ -6,9 +6,16 @@
 .font-big {
 	font-size: 30px;
 }
+.btn-lg-custom {
+
+    padding: 10px 16px !important;
+    font-size: 25px  !important;
+    line-height: 3  !important;
+    border-radius: 6px  !important;
+}
 
 .modal-height {
-	height: 150px;
+	height: 200px;
 }
 
 .lb-sm {

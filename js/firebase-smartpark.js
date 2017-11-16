@@ -94,7 +94,7 @@
     // };       
 
       var spotsRef = firebase.database().ref('spots/');
-        spotsRef.once('value', function(snapshot) {
+        spotsRef.on('value', function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
@@ -122,13 +122,13 @@
               var image = "";
               if (handicapped == "Handicapped")
               {
-                  content_str = content_str + '<p><span class="label lb-lg label-warning">Size: Handicapped</span></p><br>';
+                  content_str = content_str + '<p><span class="label lb-lg label-warning">Size: Handicapped</span></p>';
                   //label = "H";
                   image = 'https://www.airportparkingreservations.com/img/icons/handicap.png';
               }
               else
               {
-                  content_str = content_str + '<p><span class="label lb-lg label-info">Size: '+size+'</span></p><br>';
+                  content_str = content_str + '<p><span class="label lb-lg label-info">Size: '+size+'</span></p>';
               }
               content_str = content_str + '<p><span class="label lb-lg label-default">Reported by: (unknown)</span></p><br>';
 
@@ -179,7 +179,7 @@
             if (calcDistance(p1,p2) < 10)
             {
               
-              marker.removeData = "<br><button data-toggle='modal' data-target='#confirm-delete' data-onclick='removeParkingSpotWithPoints("+'"'+childKey+'"'+")' class='btn park-btn btn-lg btn-primary'>I Parked Here</button>";
+              marker.removeData = "<hr><button data-toggle='modal' data-target='#confirm-delete' data-onclick='removeParkingSpotWithPoints("+'"'+childKey+'"'+")' class='btn park-btn btn-lg btn-primary'>I Parked Here</button>";
               marker.removeData += "<button data-toggle='modal' data-target='#confirm-delete-spot' data-onclick='removeParkingSpot("+'"'+childKey+'"'+")'  class='btn park-btn margin-left btn-lg btn-primary'>Spot Full</button>";
             }                
           }            
@@ -188,8 +188,9 @@
 //            infowindow.open(map, marker);
 
             $("#marker-information").html('');
-            $("#marker-information").append(marker.removeData);
+            
             $("#marker-information").append(marker.metaData);
+            $("#marker-information").append(marker.removeData);
           });
 
 
@@ -261,10 +262,11 @@ $('#confirm-delete-spot').modal('hide');
 function removeParkingSpotWithPoints(id)
 {
   var spotsRef = firebase.database().ref('spots/'); //root reference to your data
+  //spotsRef.child(id).remove();
   $('#confirm-delete').modal('hide');
 
 
-//  spotsRef.child(id).remove();
+  
 
 }
      
