@@ -3,7 +3,13 @@
 	width: 45%;
 }
 
+.font-big {
+	font-size: 30px;
+}
 
+.modal-height {
+	height: 150px;
+}
 
 .lb-sm {
   font-size: 12px;
