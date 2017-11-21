@@ -103,8 +103,10 @@
             var longitude = Number(childData["longitude"]);
             var size = childData["size"];
             var handicapped = childData["handicapped"];
-
+            var reportedBy = childData["userID"];
             var timestamp = (childData["timestamp"]);
+
+
 
             var currentDate = new Date().getTime();
             var dateArray = timestamp.split(" ");  // split the date and time 
@@ -130,7 +132,9 @@
               {
                   content_str = content_str + '<p><span class="label lb-lg label-info">Size: '+size+'</span></p>';
               }
-              content_str = content_str + '<p><span class="label lb-lg label-default">Reported by: (unknown)</span></p><br>';
+
+            
+              // content_str = content_str + '<p><span class="label lb-lg label-default" id="reported-by">Reported by: (unknown)</span></p><br>';
 
               var parking_spot = {lat: latitude, lng: longitude};
 
@@ -173,10 +177,28 @@
               // var html_str = '<h5 class="text-white">Parking Spot Info<br>'+ content_str + '</h5>';
             marker.metaData = html_str;
 
+                var spotsRef = firebase.database().ref('user-points/');
+            spotsRef.once('value', function(snapshot) {
+              snapshot.forEach(function(childSnapshot) { 
+                  var childDataPoints = childSnapshot.val();
+                  var user_id = childDataPoints["userID"];
+                  if (reportedBy == user_id)
+                  {
+                    var user_name = childDataPoints["username"]; 
+                    var points = childDataPoints["points"]; 
+                    var reportedby = user_name + " (" + points+")";
+                    marker.reportedBy =  '<p><span class="label lb-lg label-default" id="reported-by">Reported By: '+reportedby+'</span></p><br>';
+                   // $('#reported-by').text(user_name + " (" + points+")");
+                    // content_str = content_str + '<p><span class="label lb-lg label-default">Reported by: '+ user_name + '</span></p><br>';
+                  }
+
+                });
+
+            });    
 
           if (p2 != undefined)
           {
-            if (calcDistance(p1,p2) < 10)
+            if (calcDistance(p1,p2) < .1)
             {
               
               marker.removeData = "<hr><button data-toggle='modal' data-target='#confirm-delete' data-onclick='removeParkingSpotWithPoints("+'"'+childKey+'"'+")' class='btn park-btn btn-lg btn-primary'>I Parked Here</button>";
@@ -190,6 +212,7 @@
             $("#marker-information").html('');
             
             $("#marker-information").append(marker.metaData);
+            $("#marker-information").append(marker.reportedBy);
             $("#marker-information").append(marker.removeData);
           });
 
