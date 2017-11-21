@@ -1,4 +1,26 @@
 
+.custom-map-type-control {
+
+	direction: ltr; 
+overflow: hidden; 
+text-align: center; 
+position: relative; 
+color: rgb(0, 0, 0); 
+font-family: Arial, sans-serif; 
+-webkit-user-select: none; 
+font-size: 40px; 
+width: 200px;
+background-color: rgb(255, 255, 255); 
+padding: 1px 6px; 
+border: 1px solid rgb(113, 123, 135); 
+-webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; 
+box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; 
+/*font-weight: bold; */
+min-width: 29px; 
+background-position: initial initial; 
+background-repeat: initial initial; 
+}
+
 .park-btn {
 	width: 45%;
 }
@@ -71,7 +93,7 @@
 }
 #screen{
 	background: black;
-	--height: 1175px;
+	--height: 1175;
 	width: 1936px;
 }
 #header{
@@ -139,8 +161,8 @@
 #sync_body{
 	background: url(images/screen_backdrop.png) center;
 	background-repeat: no-repeat;
-	background-size: contain;
-	height: 850px;
+	background-size: cover;
+	height: 900px;
 }
 .app_icon{
 	background: url(images/button.png) center;
@@ -165,7 +187,7 @@
 
 #footer{
 	background: #e1e1e1;
-	height: 200px;
+	height: 175px;
 	border-top: 4px outset black;
 	border-bottom: 4px outset black;
 }

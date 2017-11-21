@@ -36,7 +36,13 @@
       //var eastlansing = {lat: 42.7249592, lng: -84.4812392};
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 17,
-        center: eastlansing
+        center: eastlansing,
+        disableDefaultUI: true, 
+        // mapTypeControl: true,
+        // mapTypeControlOptions: {
+        //   style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        //   position: google.maps.ControlPosition.TOP_CENTER
+        // }
       });
 
 
@@ -83,6 +89,12 @@
     var renderZoomControls = new ZoomControl(zoomDiv, map);
     zoomDiv.index = 1;
     $("#map-custom-controls").append(zoomDiv);
+
+
+    var mapTypeDiv = document.createElement('div');
+    var renderMapTypeControls = new MapTypeControl(mapTypeDiv, map);
+    mapTypeDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(mapTypeDiv);    
     //map.controls[google.maps.ControlPosition.TOP_LEFT].push(zoomDiv);
 
     // function placeMarker(location, title) {
