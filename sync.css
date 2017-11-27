@@ -1,4 +1,8 @@
 
+.modal-margin {
+	margin-top: 135px;
+}
+
 .custom-map-type-control {
 
 	direction: ltr; 
@@ -23,7 +27,7 @@ background-repeat: initial initial;
 
 .park-btn {
 	width: 45%;
-	height: 60px;
+	height: 55px;
 	font-size: 23px !important;
 }
 
@@ -92,12 +96,13 @@ background-repeat: initial initial;
 }
 
 #screen, #sync_body, #footer{
-	width: 1935px;
+	/*width: 1935px;*/
+	width: 100%;
 }
 #screen{
 	background: black;
 	--height: 1175;
-	width: 1936px;
+	/*width: 1936px;*/
 }
 #header{
 	background: black;

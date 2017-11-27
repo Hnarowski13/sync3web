@@ -15,7 +15,7 @@
 
         // [END signout]
       } else {
-        var email = "helena@gmail.com";
+        var email = "eric@msu.edu";
         var password = "123456";
         // var email = document.getElementById('email').value;
         // var password = document.getElementById('password').value;
@@ -151,7 +151,15 @@
          // document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
          // document.getElementById('quickstart-sign-in').textContent = 'Sign out';
          // FOR TESTING PURPOSES
+         if (email == null)
+         {
+
+         }
+         else 
+         {
           document.getElementById('quickstart-account-details').textContent =  email;
+         }
+          
 
           //document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
           // if (!emailVerified) {

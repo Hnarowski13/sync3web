@@ -88,11 +88,14 @@
 
 
 
-      if (!reload)
-      {
+      // if (!reload)
+      // {
         var zoomDiv = document.createElement('div');
         var renderZoomControls = new ZoomControl(zoomDiv, map);
         zoomDiv.index = 1;
+
+         $("#marker-information").empty();
+        $("#map-custom-controls").empty();
         $("#map-custom-controls").append(zoomDiv);
 
 
@@ -102,7 +105,7 @@
           mapTypeDiv.index = 1;
           map.controls[google.maps.ControlPosition.TOP_LEFT].push(mapTypeDiv);   
 
-      }
+      // }
 
 
  
@@ -176,7 +179,10 @@
 
               var p2 = this.current_pos;
 
-
+              if (p2 == undefined)
+              {
+                p2 = new google.maps.LatLng(42.7247552, -84.4791001);
+              }
 
               
 
@@ -209,7 +215,7 @@
                   {
                     var user_name = childDataPoints["username"]; 
                     var points = childDataPoints["points"]; 
-                    var reportedby = user_name + " (" + points+")";
+                    var reportedby = user_name + " (" + points+" pts)";
                     marker.reportedBy =  '<p><span class="label lb-lg label-default" id="reported-by">Reported By: '+reportedby+'</span></p><br>';
                    // $('#reported-by').text(user_name + " (" + points+")");
                     // content_str = content_str + '<p><span class="label lb-lg label-default">Reported by: '+ user_name + '</span></p><br>';
@@ -300,9 +306,12 @@
 function removeParkingSpot(id)
 {
   var spotsRef = firebase.database().ref('spots/'); //root reference to your data
-//  spotsRef.child(id).remove();
+ // spotsRef.child(id).remove();
 $('#confirm-delete-spot').modal('hide');
   initMap(true);
+  //location.reload();
+
+  $('#points').html("+1 point added to your profile.");
   
 
 }
@@ -311,11 +320,17 @@ $('#confirm-delete-spot').modal('hide');
 function removeParkingSpotWithPoints(id)
 {
   var spotsRef = firebase.database().ref('spots/'); //root reference to your data
-  //spotsRef.child(id).remove();
+ // spotsRef.child(id).remove();
   $('#confirm-delete').modal('hide');
 
+  //var myUrl = location.href;
+
+
+  //location.reload();
   initMap(true);
 
+
+  $('#points').html("+1 point added to your profile.");
 
   
 
