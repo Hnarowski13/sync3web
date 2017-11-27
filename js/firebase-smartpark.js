@@ -24,12 +24,13 @@
   }
 
 
-    function initMap() {
+    function initMap(reload) {
 
- 
+      
       var eastlansing = new google.maps.LatLng( 42.7249728,-84.4812693);
 
       //}
+
 
 
       //var eastLansing2 = new google.maps.LatLng(lattt, longg)
@@ -53,7 +54,7 @@
               lng: position.coords.longitude
             };
             this.current_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            //map.setCenter(pos);
+            map.setCenter(pos);
             // commented out for testing purposes. dis chick in chicago
 
 
@@ -85,16 +86,26 @@
           //handleLocationError(false, infoWindow, map.getCenter());
         }
 
-    var zoomDiv = document.createElement('div');
-    var renderZoomControls = new ZoomControl(zoomDiv, map);
-    zoomDiv.index = 1;
-    $("#map-custom-controls").append(zoomDiv);
 
 
-    var mapTypeDiv = document.createElement('div');
-    var renderMapTypeControls = new MapTypeControl(mapTypeDiv, map);
-    mapTypeDiv.index = 1;
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(mapTypeDiv);    
+      if (!reload)
+      {
+        var zoomDiv = document.createElement('div');
+        var renderZoomControls = new ZoomControl(zoomDiv, map);
+        zoomDiv.index = 1;
+        $("#map-custom-controls").append(zoomDiv);
+
+
+
+          var mapTypeDiv = document.createElement('div');
+          var renderMapTypeControls = new MapTypeControl(mapTypeDiv, map);
+          mapTypeDiv.index = 1;
+          map.controls[google.maps.ControlPosition.TOP_LEFT].push(mapTypeDiv);   
+
+      }
+
+
+ 
     //map.controls[google.maps.ControlPosition.TOP_LEFT].push(zoomDiv);
 
     // function placeMarker(location, title) {
@@ -158,7 +169,7 @@
               // {
 
               // FOR TESTING PURPOSES REMOVE LATER
-              this.current_pos = new google.maps.LatLng( 42.7249728,-84.4812693);
+            //  this.current_pos = new google.maps.LatLng( 42.7249728,-84.4812693);
 
              //   this.current_pos =  new google.maps.LatLng(latitude, longitude);
               // }
@@ -170,7 +181,7 @@
               
 
            var infowindow = new google.maps.InfoWindow({
-              content: content_str
+              content: 'Selected Location',
             });
 
 
@@ -185,7 +196,7 @@
               label: label,
               icon: image
             });
-            var html_str = '<h5 class="text-white">Parking Spot Info</h5><p class="text-white spot-info">' + content_str + '</p>';
+            var html_str = '<h5 class="text-white">Parking Spot Information</h5><p class="text-white spot-info">' + content_str + '</p>';
               // var html_str = '<h5 class="text-white">Parking Spot Info<br>'+ content_str + '</h5>';
             marker.metaData = html_str;
 
@@ -210,16 +221,18 @@
 
           if (p2 != undefined)
           {
+            var distance = calcDistance(p1,p2);
+
             if (calcDistance(p1,p2) < .1)
             {
               
-              marker.removeData = "<hr><button data-toggle='modal' data-target='#confirm-delete' data-onclick='removeParkingSpotWithPoints("+'"'+childKey+'"'+")' class='btn park-btn btn-lg btn-primary'>I Parked Here</button>";
-              marker.removeData += "<button data-toggle='modal' data-target='#confirm-delete-spot' data-onclick='removeParkingSpot("+'"'+childKey+'"'+")'  class='btn park-btn margin-left btn-lg btn-primary'>Spot Full</button>";
+              marker.removeData = "<hr><button data-toggle='modal' data-target='#confirm-delete' data-onclick='removeParkingSpotWithPoints("+'"'+childKey+'"'+")' class='btn park-btn btn-lg btn-primary'><span class='glyphicon glyphicon-ok-sign'/> I Parked Here</button>";
+              marker.removeData += "<button data-toggle='modal' data-target='#confirm-delete-spot' data-onclick='removeParkingSpot("+'"'+childKey+'"'+")'  class='btn park-btn margin-left btn-lg btn-primary'><span class='glyphicon glyphicon-exclamation-sign'/> Spot Full</button>";
             }                
           }            
 
           marker.addListener('click', function() {
-//            infowindow.open(map, marker);
+           infowindow.open(map, marker);
 
             $("#marker-information").html('');
             
@@ -289,6 +302,7 @@ function removeParkingSpot(id)
   var spotsRef = firebase.database().ref('spots/'); //root reference to your data
 //  spotsRef.child(id).remove();
 $('#confirm-delete-spot').modal('hide');
+  initMap(true);
   
 
 }
@@ -299,6 +313,8 @@ function removeParkingSpotWithPoints(id)
   var spotsRef = firebase.database().ref('spots/'); //root reference to your data
   //spotsRef.child(id).remove();
   $('#confirm-delete').modal('hide');
+
+  initMap(true);
 
 
   
@@ -318,8 +334,11 @@ function removeParkingSpotWithPoints(id)
 
 
     // }
+
 function calcDistance(p1, p2) {
-  return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+
+  var distance = (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+  return parseFloat(distance);
 }
 
 
