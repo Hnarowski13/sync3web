@@ -28,7 +28,7 @@
 
       
       var eastlansing = new google.maps.LatLng( 42.7249728,-84.4812693);
-
+      var berryTree = new google.maps.LatLng(42.711601, -84.460381);
       //}
 
 
@@ -54,7 +54,9 @@
               lng: position.coords.longitude
             };
             this.current_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            map.setCenter(pos);
+           //this.current_pos = berryTree;
+           //pos = this.current_pos
+           map.setCenter(pos);
             // commented out for testing purposes. dis chick in chicago
 
 
@@ -187,7 +189,7 @@
               
 
            var infowindow = new google.maps.InfoWindow({
-              content: 'Selected Location',
+              content: 'Selected Location ',
             });
 
 
@@ -196,12 +198,17 @@
   //var image = 'https://www1.jobdiva.com/images/64px-Handicapped_Accessible_sign.svg.png';
  
            // placeMarker(parking_spot,"Whatever");
+           // if (handicapped != "Handicapped")
+           // {
             var marker = new google.maps.Marker({
               position: parking_spot,
               map: map,
               label: label,
               icon: image
             });
+          
+
+
             var html_str = '<h5 class="text-white">Parking Spot Information</h5><p class="text-white spot-info">' + content_str + '</p>';
               // var html_str = '<h5 class="text-white">Parking Spot Info<br>'+ content_str + '</h5>';
             marker.metaData = html_str;
@@ -216,7 +223,7 @@
                     var user_name = childDataPoints["username"]; 
                     var points = childDataPoints["points"]; 
                     var reportedby = user_name + " (" + points+" pts)";
-                    marker.reportedBy =  '<p><span class="label lb-lg label-default" id="reported-by">Reported By: '+reportedby+'</span></p><br>';
+                    marker.reportedBy =  '<p><span class="label lb-lg label-default" id="reported-by">Reported By: '+reportedby+'</span></p>';
                    // $('#reported-by').text(user_name + " (" + points+")");
                     // content_str = content_str + '<p><span class="label lb-lg label-default">Reported by: '+ user_name + '</span></p><br>';
                   }
@@ -247,7 +254,7 @@
             $("#marker-information").append(marker.removeData);
           });
 
-
+             // }
           });
       }); 
     
@@ -261,8 +268,17 @@
         minutes = (minutes < 10) ? "0" + minutes : minutes;
         seconds = (seconds < 10) ? "0" + seconds : seconds;
 
+        if (parseInt(hours) == 0)
+        {
+          return minutes;
+        }
+        else 
+
+        {
+          return hours + " hours " + minutes;
+        }
       //  minutes = minutes + 60*hours;
-        return hours + " hours " + minutes;
+        
        // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
     }
   //   google.maps.event.addListener(map, 'click', function(event) {
@@ -306,12 +322,12 @@
 function removeParkingSpot(id)
 {
   var spotsRef = firebase.database().ref('spots/'); //root reference to your data
- // spotsRef.child(id).remove();
+  spotsRef.child(id).remove();
 $('#confirm-delete-spot').modal('hide');
   initMap(true);
   //location.reload();
 
-  $('#points').html("+1 point added to your profile.");
+  $('#points').html("+5 point added to your profile.");
   
 
 }
@@ -320,7 +336,7 @@ $('#confirm-delete-spot').modal('hide');
 function removeParkingSpotWithPoints(id)
 {
   var spotsRef = firebase.database().ref('spots/'); //root reference to your data
- // spotsRef.child(id).remove();
+  spotsRef.child(id).remove();
   $('#confirm-delete').modal('hide');
 
   //var myUrl = location.href;
@@ -330,7 +346,7 @@ function removeParkingSpotWithPoints(id)
   initMap(true);
 
 
-  $('#points').html("+1 point added to your profile.");
+  $('#points').html("+2 point added to your profile.");
 
   
 

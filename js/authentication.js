@@ -15,7 +15,7 @@
 
         // [END signout]
       } else {
-        var email = "eric@msu.edu";
+        var email = "doug@msu.edu";
         var password = "123456";
         // var email = document.getElementById('email').value;
         // var password = document.getElementById('password').value;
