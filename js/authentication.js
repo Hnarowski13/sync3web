@@ -172,9 +172,9 @@
           currentUser = null;
           // User is signed out.
           // [START_EXCLUDE]
-          document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-          document.getElementById('quickstart-sign-in').textContent = 'Sign in';
-          document.getElementById('quickstart-account-details').textContent = 'null';
+          // document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+          // document.getElementById('quickstart-sign-in').textContent = 'Sign in';
+          // document.getElementById('quickstart-account-details').textContent = 'null';
           //window.load("/src/email.html");
           // [END_EXCLUDE]
         }
